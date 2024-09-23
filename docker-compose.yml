@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  encore-app:
+    build: .
+    image: rosenheim:v1 # Your Docker image
+    container_name: encore-app-container
+    platform: linux/amd64 # Add this line
+    ports:
+      - "4000:4000"
+    environment:
+      - ENCORE_RUNTIME_CONFIG={"project_id":"url-am62","env":"production","region":"us-east-1"}
+      - ENCORE_APP_SECRETS={"db_password":"your-db-password","api_key":"your-api-key"}
+    restart: unless-stopped
